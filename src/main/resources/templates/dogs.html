@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dogs</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <nav>
+        <a th:href="@{/owners}">Owners</a>
+        <a th:href="@{/dogs}">Dogs</a>
+        <a th:href="@{/playgroups}">Playgroups</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>Dogs</h1>
+
+    <a th:href="@{/dogs/new}">
+        <button class="btn-primary">Add Dog</button>
+    </a>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Breed</th>
+            <th>Age</th>
+            <th>Owner</th>
+        </tr>
+
+        <tr th:each="dog : ${dogs}">
+            <td th:text="${dog.name}"></td>
+            <td th:text="${dog.breed}"></td>
+            <td th:text="${dog.age}"></td>
+            <td th:text="${dog.owner != null ? dog.owner.firstName : 'No Owner'}"></td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

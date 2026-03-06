@@ -1,0 +1,43 @@
+playgroup html: <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Playgroups</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <nav>
+        <a th:href="@{/owners}">Owners</a>
+        <a th:href="@{/dogs}">Dogs</a>
+        <a th:href="@{/playgroups}">Playgroups</a>
+    </nav>
+</header>
+
+<div class="container">
+    <h1>Playgroups</h1>
+
+    <a th:href="@{/playgroups/new}">
+        <button class="btn-primary">Add Playgroup</button>
+    </a>
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Activity</th>
+            <th>Size Limit</th>
+        </tr>
+
+        <tr th:each="pg : ${playgroups}">
+            <td th:text="${pg.groupName}"></td>
+            <td th:text="${pg.activityType}"></td>
+            <td th:text="${pg.sizeLimit}"></td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>
+
+

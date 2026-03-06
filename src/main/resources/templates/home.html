@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>PawCare</title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+
+<body>
+
+<nav>
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/owners}">Owners</a>
+    <a th:href="@{/dogs}">Dogs</a>
+    <a th:href="@{/playgroups}">Playgroups</a>
+</nav>
+
+<div class="container">
+
+    <h1>Welcome to PawCare 🐾</h1>
+    <p>Manage dogs, owners, and playgroups easily.</p>
+
+    <div class="button-group">
+        <a th:href="@{/owners}" class="button">View Owners</a>
+        <a th:href="@{/dogs}" class="button">View Dogs</a>
+        <a th:href="@{/playgroups}" class="button">View Playgroups</a>
+    </div>
+
+</div>
+
+</body>
+</html>

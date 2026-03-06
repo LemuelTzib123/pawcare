@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Owner Form</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Add / Edit Owner</h1>
+
+    <form th:action="@{/owners/save}" th:object="${owner}" method="post">
+
+        <input type="hidden" th:field="*{id}" />
+
+        <label>First Name</label>
+        <input type="text" th:field="*{firstName}" required />
+
+        <label>Last Name</label>
+        <input type="text" th:field="*{lastName}" required />
+
+        <label>Email</label>
+        <input type="email" th:field="*{email}" />
+
+        <label>Phone</label>
+        <input type="text" th:field="*{phone}" />
+
+        <button class="btn-primary" type="submit">Save</button>
+    </form>
+</div>
+
+</body>
+</html>
