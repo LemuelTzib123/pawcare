@@ -3,6 +3,7 @@ package com.lemon.pawcare.owner;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import com.lemon.pawcare.dog.Dog;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,6 @@ public class Owner {
     @JsonIgnore
     private List<Dog> dogs = new ArrayList<>();
 
-
     public Owner() {
     }
 
@@ -44,9 +44,15 @@ public class Owner {
         this.email = email;
     }
 
+    // GETTERS / SETTERS
 
     public Long getId() {
         return id;
+    }
+
+    // 🔥 THIS WAS MISSING (REQUIRED FOR EDITING)
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -89,6 +95,7 @@ public class Owner {
         this.dogs = dogs;
     }
 
+    // HELPER METHODS
 
     public void addDog(Dog dog) {
         dogs.add(dog);

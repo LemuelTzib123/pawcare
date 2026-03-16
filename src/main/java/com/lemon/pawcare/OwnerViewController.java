@@ -33,8 +33,15 @@ public class OwnerViewController {
 
     @GetMapping("/owners/edit/{id}")
     public String editOwner(@PathVariable Long id, Model model) {
-        Owner owner = ownerRepository.findById(id).orElseThrow();
+
+        Owner owner = ownerRepository.findById(id).orElse(null);
+
+        if (owner == null) {
+            return "redirect:/owners";
+        }
+
         model.addAttribute("owner", owner);
+
         return "owner-form";
     }
 

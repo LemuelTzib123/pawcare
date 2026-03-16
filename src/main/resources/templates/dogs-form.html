@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Dog Form</title>
 </head>
+<link rel="stylesheet" th:href="@{/css/dog-form.css}">
 <body>
 
 <h1>Dog Form</h1>
@@ -19,10 +20,6 @@
     <input type="number" th:field="*{age}" placeholder="Age" min="0">
     <br><br>
 
-    <label>
-        <input type="checkbox" th:field="*{vaccinated}">
-        Vaccinated
-    </label>
 
     <br><br>
 

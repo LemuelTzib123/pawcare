@@ -2,26 +2,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Owners</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+<link rel="stylesheet" th:href="@{/css/owner.css}">
 <body>
 
-<header>
-    <nav>
-        <a th:href="@{/owners}">Owners</a>
-        <a th:href="@{/dogs}">Dogs</a>
-        <a th:href="@{/playgroups}">Playgroups</a>
-    </nav>
-</header>
+<nav>
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/owners}">Owners</a>
+    <a th:href="@{/dogs}">Dogs</a>
+</nav>
 
 <div class="container">
+
     <h1>Owners</h1>
 
     <a th:href="@{/owners/new}">
-        <button class="btn-primary">Add Owner</button>
+        <button>Add Owner</button>
     </a>
 
-    <table>
+    <table border="1">
+
         <tr>
             <th>Name</th>
             <th>Email</th>
@@ -33,16 +33,15 @@
             <td th:text="${owner.firstName + ' ' + owner.lastName}"></td>
             <td th:text="${owner.email}"></td>
             <td th:text="${owner.phone}"></td>
+
             <td>
-                <a th:href="@{'/owners/edit/' + ${owner.id}}">
-                    <button class="btn-primary">Edit</button>
-                </a>
-                <a th:href="@{'/owners/delete/' + ${owner.id}}">
-                    <button class="btn-danger">Delete</button>
-                </a>
+                <a th:href="@{/owners/edit/{id}(id=${owner.id})}">Edit</a>
+                <a th:href="@{/owners/delete/{id}(id=${owner.id})}">Delete</a>
             </td>
         </tr>
+
     </table>
+
 </div>
 
 </body>
