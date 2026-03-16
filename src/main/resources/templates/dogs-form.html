@@ -1,28 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add Dog</title>
-
-    <!-- Connect CSS -->
-    <link rel="stylesheet" th:href="@{/css/add_dog.css}">
+    <meta charset="UTF-8">
+    <title>Dog Form</title>
 </head>
 <body>
 
-<div class="form-container">
+<h1>Dog Form</h1>
 
-    <h1>Add Dog</h1>
+<form th:action="@{/dogs/save}" th:object="${dog}" method="post">
 
-    <form th:action="@{/dogs/save}" th:object="${dog}" method="post">
-        <input type="text" th:field="*{name}" placeholder="Dog Name" required>
-        <input type="text" th:field="*{breed}" placeholder="Breed">
-        <input type="number" th:field="*{age}" placeholder="Age">
+    <input type="text" th:field="*{name}" placeholder="Dog Name" required>
+    <br><br>
 
-        <button type="submit">Save Dog</button>
-    </form>
+    <input type="text" th:field="*{breed}" placeholder="Breed">
+    <br><br>
 
-    <a th:href="@{/dogs}">Back</a>
+    <input type="number" th:field="*{age}" placeholder="Age" min="0">
+    <br><br>
 
-</div>
+    <label>
+        <input type="checkbox" th:field="*{vaccinated}">
+        Vaccinated
+    </label>
+
+    <br><br>
+
+    <select name="ownerId">
+        <option value="">Select Owner</option>
+        <option th:each="owner : ${owners}"
+                th:value="${owner.id}"
+                th:text="${owner.firstName + ' ' + owner.lastName}">
+        </option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">Save</button>
+
+</form>
+
+<br>
+<a th:href="@{/dogs}">Back</a>
 
 </body>
 </html>

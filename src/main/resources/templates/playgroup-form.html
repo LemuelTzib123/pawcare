@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add Playgroup</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Playgroup Form</title>
 </head>
-
 <body>
 
-<div class="container">
+<h1>Playgroup Form</h1>
 
-    <h1>Add Playgroup</h1>
+<form th:action="@{/playgroups/save}" th:object="${playgroup}" method="post">
 
-    <form th:action="@{/playgroups/save}" th:object="${playgroup}" method="post">
+    <input type="text" th:field="*{groupName}" placeholder="Group Name" required>
+    <br><br>
 
-        <label>Group Name</label>
-        <input type="text" th:field="*{groupName}" required>
+    <input type="text" th:field="*{activityType}" placeholder="Activity Type">
+    <br><br>
 
-        <label>Activity Type</label>
-        <input type="text" th:field="*{activityType}">
+    <input type="number" th:field="*{sizeLimit}" placeholder="Size Limit">
+    <br><br>
 
-        <label>Size Limit</label>
-        <input type="number" th:field="*{sizeLimit}">
+    <button type="submit">Save</button>
 
-        <button class="btn-primary" type="submit">Save</button>
+</form>
 
-    </form>
-
-    <br>
-
-    <a th:href="@{/playgroups}">Back</a>
-
-</div>
+<br>
+<a th:href="@{/playgroups}">Back</a>
 
 </body>
 </html>
