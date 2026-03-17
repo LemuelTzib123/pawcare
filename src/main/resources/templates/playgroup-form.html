@@ -6,24 +6,24 @@
 <link rel="stylesheet" th:href="@{/css/playgroup-form.css}">
 <body>
 
-<h1>Playgroup Form</h1>
+<h1 th:text="${playgroup.id} != null ? 'Edit Playgroup' : 'Add Playgroup'"></h1>
 
 <form th:action="@{/playgroups/save}" th:object="${playgroup}" method="post">
 
-    <input type="text" th:field="*{groupName}" placeholder="Group Name" required>
-    <br><br>
+    <input type="hidden" th:field="*{id}">
 
-    <input type="text" th:field="*{activityType}" placeholder="Activity Type">
-    <br><br>
+    <input type="text" th:field="*{groupName}" placeholder="Group Name" required><br><br>
 
-    <input type="number" th:field="*{sizeLimit}" placeholder="Size Limit">
-    <br><br>
+    <input type="text" th:field="*{activityType}" placeholder="Activity Type"><br><br>
+
+    <input type="number" th:field="*{sizeLimit}" placeholder="Size Limit"><br><br>
 
     <button type="submit">Save</button>
 
 </form>
 
 <br>
+
 <a th:href="@{/playgroups}">Back</a>
 
 </body>

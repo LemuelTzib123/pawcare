@@ -1,5 +1,5 @@
 /* ========================= */
-/* Form Page (Dogs & Owners) */
+/* Form Container */
 /* ========================= */
 
 form {
@@ -13,7 +13,18 @@ form {
 }
 
 /* ========================= */
-/* Form Inputs */
+/* Title */
+/* ========================= */
+
+h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #2c3e50;
+    margin-top: 40px;
+}
+
+/* ========================= */
+/* Inputs */
 /* ========================= */
 
 input[type="text"],
@@ -36,15 +47,20 @@ select:focus {
 }
 
 /* ========================= */
-/* Checkbox Styling */
+/* Checkbox */
 /* ========================= */
+
+label {
+    font-weight: bold;
+    color: #2c3e50;
+}
 
 input[type="checkbox"] {
     margin-right: 6px;
 }
 
 /* ========================= */
-/* Form Button */
+/* Button */
 /* ========================= */
 
 form button {
@@ -68,6 +84,9 @@ form button:hover {
 /* ========================= */
 
 a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
     text-decoration: none;
     color: #3498db;
     font-weight: bold;

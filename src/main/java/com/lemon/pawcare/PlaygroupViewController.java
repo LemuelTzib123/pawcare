@@ -1,55 +1,46 @@
 package com.lemon.pawcare.playgroup;
 
-import com.lemon.pawcare.dog.DogRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/playgroups")
 public class PlaygroupViewController {
 
     private final PlaygroupRepository playgroupRepository;
-    private final DogRepository dogRepository;
 
-    public PlaygroupViewController(PlaygroupRepository playgroupRepository,
-                                   DogRepository dogRepository) {
+    public PlaygroupViewController(PlaygroupRepository playgroupRepository) {
         this.playgroupRepository = playgroupRepository;
-        this.dogRepository = dogRepository;
     }
 
-    // List playgroups
-    @GetMapping
-    public String listPlaygroups(Model model) {
+    @GetMapping("/playgroups")
+    public String playgroups(Model model) {
         model.addAttribute("playgroups", playgroupRepository.findAll());
         return "playgroups";
     }
 
-    // Show create form
-    @GetMapping("/new")
+    @GetMapping("/playgroups/new")
     public String newPlaygroup(Model model) {
         model.addAttribute("playgroup", new Playgroup());
-        model.addAttribute("dogs", dogRepository.findAll());
         return "playgroup-form";
     }
 
-    // Save playgroup
-    @PostMapping("/save")
+    @PostMapping("/playgroups/save")
     public String savePlaygroup(@ModelAttribute Playgroup playgroup) {
         playgroupRepository.save(playgroup);
         return "redirect:/playgroups";
     }
 
-    // Edit playgroup
-    @GetMapping("/edit/{id}")
+    @GetMapping("/playgroups/edit/{id}")
     public String editPlaygroup(@PathVariable Long id, Model model) {
-        Playgroup playgroup = playgroupRepository.findById(id).orElseThrow();
-        model.addAttribute("playgroup", playgroup);
+        Playgroup pg = playgroupRepository.findById(id).orElse(null);
+        if (pg == null) return "redirect:/playgroups";
+
+        model.addAttribute("playgroup", pg);
         return "playgroup-form";
     }
 
-    // Delete playgroup
-    @GetMapping("/delete/{id}")
+    @GetMapping("/playgroups/delete/{id}")
     public String deletePlaygroup(@PathVariable Long id) {
         playgroupRepository.deleteById(id);
         return "redirect:/playgroups";

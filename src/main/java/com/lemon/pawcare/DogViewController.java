@@ -19,45 +19,36 @@ public class DogViewController {
         this.ownerRepository = ownerRepository;
     }
 
-    // List all dogs
     @GetMapping
     public String listDogs(Model model) {
         model.addAttribute("dogs", dogRepository.findAll());
         return "dogs";
     }
 
-    // Show add form
-    @GetMapping("/new")
+    @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("dog", new Dog());
         model.addAttribute("owners", ownerRepository.findAll());
         return "dogs-form";
     }
 
-    // Save dog
     @PostMapping("/save")
-    public String saveDog(@ModelAttribute Dog dog,
-                          @RequestParam(required = false) Long ownerId) {
-
-        if (ownerId != null) {
-            Owner owner = ownerRepository.findById(ownerId).orElse(null);
-            dog.setOwner(owner);
-        }
-
+    public String saveDog(@ModelAttribute Dog dog) {
         dogRepository.save(dog);
         return "redirect:/dogs";
     }
 
-    // Edit dog
     @GetMapping("/edit/{id}")
     public String editDog(@PathVariable Long id, Model model) {
-        Dog dog = dogRepository.findById(id).orElseThrow();
+        Dog dog = dogRepository.findById(id).orElse(null);
+        if (dog == null) return "redirect:/dogs";
+
         model.addAttribute("dog", dog);
         model.addAttribute("owners", ownerRepository.findAll());
+
         return "dogs-form";
     }
 
-    // Delete dog
     @GetMapping("/delete/{id}")
     public String deleteDog(@PathVariable Long id) {
         dogRepository.deleteById(id);
