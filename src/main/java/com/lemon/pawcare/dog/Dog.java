@@ -38,7 +38,6 @@ public class Dog {
     @JsonIgnore
     private List<Playgroup> playgroups = new ArrayList<>();
 
-
     public Dog() {
     }
 
@@ -49,8 +48,13 @@ public class Dog {
         this.vaccinated = vaccinated;
     }
 
+    // ✅ GETTER + 🔥 FIXED SETTER FOR ID
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {   // 🔥 THIS FIXES YOUR ISSUE
+        this.id = id;
     }
 
     public String getName() {
@@ -100,7 +104,6 @@ public class Dog {
     public void setPlaygroups(List<Playgroup> playgroups) {
         this.playgroups = playgroups;
     }
-
 
     public void addPlaygroup(Playgroup playgroup) {
         this.playgroups.add(playgroup);

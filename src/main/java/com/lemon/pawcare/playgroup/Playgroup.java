@@ -23,7 +23,7 @@ public class Playgroup {
     private int sizeLimit;
 
     @ManyToMany(mappedBy = "playgroups")
-    @JsonIgnore   // prevents infinite loop in JSON
+    @JsonIgnore
     private List<Dog> dogs = new ArrayList<>();
 
     public Playgroup() {
@@ -35,9 +35,12 @@ public class Playgroup {
         this.sizeLimit = sizeLimit;
     }
 
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getGroupName() {

@@ -27,7 +27,23 @@ public class PlaygroupViewController {
 
     @PostMapping("/playgroups/save")
     public String savePlaygroup(@ModelAttribute Playgroup playgroup) {
-        playgroupRepository.save(playgroup);
+
+        if (playgroup.getId() != null) {
+            // 🔥 UPDATE
+            Playgroup existing = playgroupRepository.findById(playgroup.getId())
+                    .orElseThrow(() -> new RuntimeException("Playgroup not found"));
+
+            existing.setGroupName(playgroup.getGroupName());
+            existing.setActivityType(playgroup.getActivityType());
+            existing.setSizeLimit(playgroup.getSizeLimit());
+
+            playgroupRepository.save(existing);
+
+        } else {
+            // CREATE
+            playgroupRepository.save(playgroup);
+        }
+
         return "redirect:/playgroups";
     }
 

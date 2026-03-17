@@ -2,34 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Dog Form</title>
+    <link rel="stylesheet" th:href="@{/css/dog-form.css}">
 </head>
-<link rel="stylesheet" th:href="@{/css/dog-form.css}">
 <body>
 
 <h1 th:text="${dog.id} != null ? 'Edit Dog' : 'Add Dog'"></h1>
 
 <form th:action="@{/dogs/save}" th:object="${dog}" method="post">
 
-    <input type="hidden" th:field="*{id}">
+    <!-- 🔥 FIX: Force ID to be sent -->
+    <input type="hidden" name="id" th:value="${dog.id}" />
 
-    <input type="text" th:field="*{name}" placeholder="Dog Name" required><br><br>
-
-    <input type="text" th:field="*{breed}" placeholder="Breed"><br><br>
-
-    <input type="number" th:field="*{age}" placeholder="Age"><br><br>
-
-    <label>
-        <input type="checkbox" th:field="*{vaccinated}">
-        Vaccinated
-    </label>
-
+    <input type="text"
+           th:field="*{name}"
+           placeholder="Dog Name"
+           required />
     <br><br>
 
-    <select th:field="*{owner}">
-        <option value="">Select Owner</option>
+    <input type="text"
+           th:field="*{breed}"
+           placeholder="Breed" />
+    <br><br>
+
+    <input type="number"
+           th:field="*{age}"
+           placeholder="Age" />
+    <br><br>
+
+    <!-- ✅ FIXED owner binding -->
+    <select th:field="*{owner.id}">
+        <option value="">-- Select Owner --</option>
 
         <option th:each="owner : ${owners}"
-                th:value="${owner}"
+                th:value="${owner.id}"
                 th:text="${owner.firstName + ' ' + owner.lastName}">
         </option>
     </select>
